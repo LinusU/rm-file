@@ -2,5 +2,16 @@
   "name": "rm-file",
   "version": "0.0.0",
   "license": "MIT",
-  "repository": "LinusU/rm-file"
+  "repository": "LinusU/rm-file",
+  "scripts": {
+    "test": "standard && mocha"
+  },
+  "dependencies": {
+    "nested-error-stacks": "^2.0.0"
+  },
+  "devDependencies": {
+    "assert-rejects": "^0.1.1",
+    "mocha": "^3.5.0",
+    "standard": "^10.0.3"
+  }
 }
