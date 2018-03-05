@@ -27,6 +27,8 @@ rmFile('useless-file.txt').then(() => {
 
 Returns a `Promise`.
 
+### rmFile.sync(path)
+
 #### path
 
 Type: `string`
