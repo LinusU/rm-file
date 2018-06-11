@@ -11,7 +11,7 @@
   },
   "devDependencies": {
     "assert-rejects": "^0.1.1",
-    "mocha": "^3.5.0",
-    "standard": "^10.0.3"
+    "mocha": "^5.2.0",
+    "standard": "^11.0.1"
   }
 }
