@@ -14,26 +14,29 @@ npm install --save rm-file
 ## Usage
 
 ```js
-const rmFile = require('rm-file')
+import { rmFile } from 'rm-file'
 
-rmFile('useless-file.txt').then(() => {
-  console.log('File removed')
-})
+await rmFile('useless-file.txt')
+```
+
+### Sync
+
+```js
+import { rmFileSync } from 'rm-file'
+
+rmFileSync('useless-file.txt')
 ```
 
 ## API
 
-### rmFile(path)
+### `rmFile(path)`
 
-Returns a `Promise`.
+- `path` (`string | Buffer | URL`, required)
+- returns `Promise<void>`
 
-### rmFile.sync(path)
+### `rmFileSync(path)`
 
-#### path
-
-Type: `string`
-
-File you want to remove.
+- `path` (`string | Buffer | URL`, required)
 
 ## Related
 
