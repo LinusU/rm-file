@@ -1,7 +1,2 @@
-declare function rmFile(path: string): Promise<void>
-
-declare namespace rmFile {
-  export function sync(path: string): void
-}
-
-export = rmFile
+export function rmFile(path: string | Buffer | URL): Promise<void>
+export function rmFileSync(path: string | Buffer | URL): void

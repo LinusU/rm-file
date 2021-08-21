@@ -1,8 +1,5 @@
-'use strict'
-
-const fs = require('fs')
-
-const NestedError = require('nested-error-stacks')
+import fs from 'node:fs'
+import NestedError from 'nested-error-stacks'
 
 class RmFileError extends NestedError {
   constructor (message, nested) {
@@ -12,30 +9,29 @@ class RmFileError extends NestedError {
   }
 }
 
-function createError (err, path) {
-  switch (err.code) {
+function createError (error, path) {
+  switch (error.code) {
     case 'ENOENT':
-      return new RmFileError(`No file could be found at "${path}"`, err)
+      return new RmFileError(`No file could be found at "${path}"`, error)
     case 'ENOTDIR':
-      return new RmFileError(`A component used as a directory in "${path}" is not, in fact, a directory`, err)
+      return new RmFileError(`A component used as a directory in "${path}" is not, in fact, a directory`, error)
     default:
-      return new RmFileError(`Failed to remove file "${path}"`, err)
+      return new RmFileError(`Failed to remove file "${path}"`, error)
   }
 }
 
-module.exports = function rmFile (path) {
-  return new Promise((resolve, reject) => {
-    fs.unlink(path, err => {
-      if (err) reject(createError(err, path))
-      resolve()
-    })
-  })
+export async function rmFile (path) {
+  try {
+    await fs.promises.unlink(path)
+  } catch (error) {
+    throw createError(error, path)
+  }
 }
 
-module.exports.sync = function rmFileSync (path) {
+export function rmFileSync (path) {
   try {
     fs.unlinkSync(path)
-  } catch (err) {
-    throw createError(err, path)
+  } catch (error) {
+    throw createError(error, path)
   }
 }
